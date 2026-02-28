@@ -1,0 +1,2556 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>United Creators | STEAM Robotics Programs</title>
+    <meta name="description" content="United Creators - Building Tomorrow's Innovators with STEAM Robotics Programs for Premium Schools in Saudi Arabia">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <style>
+        /* ============================================
+           CSS VARIABLES & DESIGN SYSTEM
+        ============================================ */
+        :root {
+            /* Colors */
+            --dark-navy: #0f172a;
+            --dark-navy-light: #1e293b;
+            --electric-blue: #38bdf8;
+            --emerald: #10b981;
+            --purple: #a78bfa;
+            --amber: #f59e0b;
+            --light: #f1f5f9;
+            --light-muted: #94a3b8;
+            
+            /* Glass Effect */
+            --glass-bg: rgba(30, 41, 59, 0.58);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-blur: blur(20px);
+            
+            /* Spacing */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --space-2xl: 4rem;
+            --space-3xl: 6rem;
+            
+            /* Typography */
+            --font-ar: 'Cairo', sans-serif;
+            --font-en: 'Poppins', 'Inter', sans-serif;
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+            
+            /* Shadows */
+            --shadow-glow-blue: 0 0 30px rgba(56, 189, 248, 0.3);
+            --shadow-glow-emerald: 0 0 30px rgba(16, 185, 129, 0.3);
+            --shadow-glow-purple: 0 0 30px rgba(167, 139, 250, 0.3);
+            
+            /* Container */
+            --container-max: 1200px;
+            --container-padding: 1.5rem;
+        }
+        
+        /* Light Theme */
+        [data-theme="light"] {
+            --dark-navy: #f8fafc;
+            --dark-navy-light: #f1f5f9;
+            --light: #0f172a;
+            --light-muted: #475569;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(0, 0, 0, 0.08);
+        }
+        
+        /* ============================================
+           RESET & BASE
+        ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        
+        body {
+            font-family: var(--font-ar);
+            background-color: var(--dark-navy);
+            color: var(--light);
+            line-height: 1.7;
+            overflow-x: hidden;
+            transition: background-color var(--transition-normal), color var(--transition-normal);
+        }
+        
+        [dir="ltr"] body {
+            font-family: var(--font-en);
+        }
+        
+        /* Selection */
+        ::selection {
+            background: var(--electric-blue);
+            color: var(--dark-navy);
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--dark-navy);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--electric-blue);
+            border-radius: 4px;
+        }
+        
+        /* ============================================
+           TYPOGRAPHY
+        ============================================ */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: var(--space-md);
+        }
+        
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+        }
+        
+        h2 {
+            font-size: clamp(1.75rem, 4vw, 2.75rem);
+        }
+        
+        h3 {
+            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+        }
+        
+        p {
+            margin-bottom: var(--space-md);
+            color: var(--light-muted);
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        
+        /* ============================================
+           LAYOUT UTILITIES
+        ============================================ */
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+        
+        .section {
+            padding: var(--space-3xl) 0;
+            position: relative;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .section-header h2 {
+            margin-bottom: var(--space-sm);
+        }
+        
+        .section-header p {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Grid System */
+        .grid {
+            display: grid;
+            gap: var(--space-lg);
+        }
+        
+        .grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        
+        @media (max-width: 992px) {
+            .grid-3, .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Flex */
+        .flex {
+            display: flex;
+        }
+        
+        .flex-col {
+            flex-direction: column;
+        }
+        
+        .items-center {
+            align-items: center;
+        }
+        
+        .justify-between {
+            justify-content: space-between;
+        }
+        
+        .justify-center {
+            justify-content: center;
+        }
+        
+        .gap-sm {
+            gap: var(--space-sm);
+        }
+        
+        .gap-md {
+            gap: var(--space-md);
+        }
+        
+        .gap-lg {
+            gap: var(--space-lg);
+        }
+        
+        /* ============================================
+           COMPONENTS
+        ============================================ */
+        
+        /* Glass Card */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            padding: var(--space-lg);
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: var(--shadow-glow-blue);
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-xs);
+            padding: 0.875rem 2rem;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--electric-blue), var(--purple));
+            color: var(--dark-navy);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow-blue);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid var(--electric-blue);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--electric-blue);
+            color: var(--dark-navy);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--light);
+            border: 1px solid var(--glass-border);
+        }
+        
+        .btn-outline:hover {
+            background: var(--glass-bg);
+            border-color: var(--electric-blue);
+        }
+        
+        /* Badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: 0.5rem 1rem;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--electric-blue);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        /* Metric Card */
+        .metric-card {
+            text-align: center;
+            padding: var(--space-md);
+        }
+        
+        .metric-value {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--electric-blue), var(--emerald));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .metric-label {
+            font-size: 0.875rem;
+            color: var(--light-muted);
+            margin-top: var(--space-xs);
+        }
+        
+        /* Tab System */
+        .tabs {
+            display: flex;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            color: var(--light-muted);
+            font-family: inherit;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--electric-blue), var(--purple));
+            color: var(--dark-navy);
+            border-color: transparent;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Form Elements */
+        .form-group {
+            margin-bottom: var(--space-md);
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: var(--space-xs);
+            font-weight: 500;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--light);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--electric-blue);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+        }
+        
+        .form-input::placeholder {
+            color: var(--light-muted);
+        }
+        
+        textarea.form-input {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* ============================================
+           ORBITAL CANVAS BACKGROUND
+        ============================================ */
+        #orbital-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.55;
+            pointer-events: none;
+        }
+        
+        /* ============================================
+           HEADER & NAVIGATION
+        ============================================ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: var(--space-sm) 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid var(--glass-border);
+            transition: all var(--transition-normal);
+        }
+        
+        .header.scrolled {
+            padding: 0.5rem 0;
+            background: rgba(15, 23, 42, 0.95);
+        }
+        
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .logo-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            object-fit: cover;
+            background: linear-gradient(135deg, var(--electric-blue), var(--purple));
+        }
+        
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--electric-blue), var(--emerald));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: var(--space-md);
+            list-style: none;
+        }
+        
+        .nav-link {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--light-muted);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--electric-blue), var(--emerald));
+            transition: width var(--transition-normal);
+        }
+        
+        .nav-link:hover {
+            color: var(--light);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: var(--light);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        
+        .icon-btn:hover {
+            background: var(--electric-blue);
+            color: var(--dark-navy);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            padding: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--light);
+            transition: all var(--transition-fast);
+        }
+        
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--dark-navy);
+                flex-direction: column;
+                padding: var(--space-md);
+                border-bottom: 1px solid var(--glass-border);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+        }
+        
+        /* ============================================
+           HERO SECTION
+        ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 7fr 5fr;
+            gap: var(--space-2xl);
+            align-items: center;
+        }
+        
+        @media (max-width: 992px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-badge {
+            margin-bottom: var(--space-md);
+            display: inline-flex;
+        }
+        
+        .hero-title {
+            margin-bottom: var(--space-md);
+            line-height: 1.2;
+        }
+        
+        .hero-title-en {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            font-weight: 500;
+            color: var(--light-muted);
+            margin-bottom: var(--space-md);
+            display: block;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.125rem;
+            max-width: 500px;
+            margin-bottom: var(--space-lg);
+        }
+        
+        [dir="ltr"] .hero-subtitle {
+            max-width: 550px;
+        }
+        
+        @media (max-width: 992px) {
+            .hero-subtitle {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+        
+        .hero-actions {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+        }
+        
+        @media (max-width: 992px) {
+            .hero-actions {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-actions {
+                flex-direction: column;
+            }
+        }
+        
+        .hero-metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .hero-image-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 18px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--dark-navy-light), var(--dark-navy));
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed var(--glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-image-placeholder::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--electric-blue), transparent, var(--purple), transparent);
+            animation: rotate 10s linear infinite;
+            opacity: 0.1;
+        }
+        
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+        
+        .hero-image-placeholder svg {
+            width: 80px;
+            height: 80px;
+            color: var(--light-muted);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* ============================================
+           OVERVIEW SECTION
+        ============================================ */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+        
+        @media (max-width: 768px) {
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+        }
+        
+        @media (max-width: 992px) {
+            .philosophy-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .philosophy-card {
+            text-align: center;
+            padding: var(--space-xl) var(--space-lg);
+        }
+        
+        .philosophy-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto var(--space-md);
+            background: linear-gradient(135deg, var(--electric-blue), var(--purple));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+        }
+        
+        .philosophy-card h3 {
+            margin-bottom: var(--space-sm);
+        }
+        
+        /* ============================================
+           PROGRAMS SECTION
+        ============================================ */
+        .programs-tabs {
+            justify-content: center;
+        }
+        
+        .program-content {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            padding: var(--space-xl);
+        }
+        
+        .program-list {
+            list-style: none;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .program-list li {
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .program-list li::before {
+            content: '✓';
+            color: var(--emerald);
+            font-weight: bold;
+        }
+        
+        .program-focus {
+            padding: var(--space-md);
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 12px;
+            border-left: 3px solid var(--electric-blue);
+        }
+        
+        [dir="rtl"] .program-focus {
+            border-left: none;
+            border-right: 3px solid var(--electric-blue);
+        }
+        
+        /* ============================================
+           COMPETITION SECTION
+        ============================================ */
+        .competition-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+        
+        @media (max-width: 768px) {
+            .competition-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .competition-images {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+        }
+        
+        .competition-image {
+            height: 250px;
+            background: var(--glass-bg);
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .competition-image svg {
+            width: 48px;
+            height: 48px;
+            color: var(--light-muted);
+        }
+        
+        /* ============================================
+           IMPLEMENTATION SECTION
+        ============================================ */
+        .implementation-steps {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+        
+        .step-card {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: var(--space-lg);
+            align-items: start;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--electric-blue), var(--purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--dark-navy);
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            margin-bottom: var(--space-xs);
+        }
+        
+        .step-duration {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--emerald);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+        
+        /* ============================================
+           WHY US SECTION
+        ============================================ */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+        }
+        
+        @media (max-width: 992px) {
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .why-card {
+            position: relative;
+            padding: var(--space-xl) var(--space-lg);
+        }
+        
+        .why-number {
+            position: absolute;
+            top: var(--space-md);
+            right: var(--space-md);
+            font-size: 3rem;
+            font-weight: 800;
+            color: rgba(56, 189, 248, 0.1);
+            line-height: 1;
+        }
+        
+        [dir="ltr"] .why-number {
+            right: auto;
+            left: var(--space-md);
+        }
+        
+        .why-card h3 {
+            margin-bottom: var(--space-sm);
+            font-size: 1.1rem;
+        }
+        
+        /* ============================================
+           TEAM SECTION
+        ============================================ */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+        }
+        
+        @media (max-width: 992px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .team-card {
+            text-align: center;
+            padding: var(--space-xl) var(--space-lg);
+        }
+        
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto var(--space-lg);
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--electric-blue), var(--purple), var(--emerald));
+            padding: 3px;
+            position: relative;
+        }
+        
+        .team-avatar-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--dark-navy-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--light);
+        }
+        
+        .team-card h3 {
+            margin-bottom: var(--space-xs);
+        }
+        
+        .team-role {
+            color: var(--electric-blue);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* ============================================
+           GALLERY SECTION
+        ============================================ */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .gallery-item {
+            aspect-ratio: 4/3;
+            background: var(--glass-bg);
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform var(--transition-normal);
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .gallery-item svg {
+            width: 48px;
+            height: 48px;
+            color: var(--light-muted);
+        }
+        
+        /* Gallery Modal */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+        }
+        
+        .gallery-modal.active {
+            display: flex;
+        }
+        
+        .gallery-modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .gallery-modal-close {
+            position: absolute;
+            top: var(--space-lg);
+            right: var(--space-lg);
+            width: 48px;
+            height: 48px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+        }
+        
+        .gallery-modal-close:hover {
+            background: var(--electric-blue);
+            color: var(--dark-navy);
+        }
+        
+        /* ============================================
+           CONTACT SECTION
+        ============================================ */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-2xl);
+        }
+        
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .contact-info h3 {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-item h4 {
+            margin-bottom: var(--space-xs);
+            font-size: 1rem;
+        }
+        
+        .contact-item p {
+            margin: 0;
+            color: var(--light);
+        }
+        
+        .contact-actions {
+            display: flex;
+            gap: var(--space-md);
+            margin-top: var(--space-xl);
+        }
+        
+        /* ============================================
+           FOOTER
+        ============================================ */
+        .footer {
+            padding: var(--space-2xl) 0 var(--space-lg);
+            border-top: 1px solid var(--glass-border);
+        }
+        
+        .footer-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: var(--space-md);
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--electric-blue), var(--emerald));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .footer-contact {
+            display: flex;
+            gap: var(--space-lg);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .footer-contact a {
+            color: var(--light-muted);
+        }
+        
+        .footer-contact a:hover {
+            color: var(--electric-blue);
+        }
+        
+        .back-to-top {
+            width: 48px;
+            height: 48px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            color: var(--light);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+        }
+        
+        .back-to-top:hover {
+            background: var(--electric-blue);
+            color: var(--dark-navy);
+            transform: translateY(-4px);
+        }
+        
+        .footer-copyright {
+            color: var(--light-muted);
+            font-size: 0.875rem;
+        }
+        
+        /* ============================================
+           EDIT MODE
+        ============================================ */
+        .edit-mode-btn {
+            position: fixed;
+            bottom: var(--space-lg);
+            right: var(--space-lg);
+            z-index: 1500;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--electric-blue), var(--purple));
+            color: var(--dark-navy);
+            border: none;
+            border-radius: 50px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            box-shadow: var(--shadow-glow-blue);
+            transition: all var(--transition-normal);
+        }
+        
+        [dir="ltr"] .edit-mode-btn {
+            right: auto;
+            left: var(--space-lg);
+        }
+        
+        .edit-mode-btn::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50px;
+            background: conic-gradient(from 0deg, var(--electric-blue), var(--purple), var(--emerald), var(--electric-blue));
+            z-index: -1;
+            animation: neonRotate 3.5s linear infinite;
+        }
+        
+        @keyframes neonRotate {
+            to { transform: rotate(360deg); }
+        }
+        
+        .edit-mode-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.5);
+        }
+        
+        .edit-mode-btn.active {
+            background: linear-gradient(135deg, var(--emerald), var(--electric-blue));
+        }
+        
+        body.edit-mode [contenteditable="true"] {
+            outline: 2px dashed var(--electric-blue);
+            outline-offset: 4px;
+            cursor: text;
+        }
+        
+        body.edit-mode [contenteditable="true"]:hover {
+            outline-color: var(--emerald);
+        }
+        
+        body.edit-mode .editable-image {
+            cursor: pointer;
+            position: relative;
+        }
+        
+        body.edit-mode .editable-image::after {
+            content: 'Click to change image';
+            position: absolute;
+            inset: 0;
+            background: rgba(56, 189, 248, 0.8);
+            color: var(--dark-navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+        }
+        
+        body.edit-mode .editable-image:hover::after {
+            opacity: 1;
+        }
+        
+        /* Save Button (visible in edit mode) */
+        .save-btn {
+            position: fixed;
+            bottom: var(--space-lg);
+            right: calc(var(--space-lg) + 180px);
+            z-index: 1500;
+            padding: 1rem 2rem;
+            background: var(--emerald);
+            color: var(--dark-navy);
+            border: none;
+            border-radius: 50px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            gap: var(--space-sm);
+            transition: all var(--transition-normal);
+        }
+        
+        [dir="ltr"] .save-btn {
+            right: auto;
+            left: calc(var(--space-lg) + 180px);
+        }
+        
+        body.edit-mode .save-btn {
+            display: flex;
+        }
+        
+        .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow-emerald);
+        }
+        
+        /* Hidden file input for image upload */
+        #image-upload {
+            display: none;
+        }
+        
+        /* ============================================
+           ANIMATIONS
+        ============================================ */
+        .gsap-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        /* Typing cursor */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        /* Pulse animation for badge */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* ============================================
+           RESPONSIVE
+        ============================================ */
+        @media (max-width: 1200px) {
+            :root {
+                --container-padding: 1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section {
+                padding: var(--space-2xl) 0;
+            }
+            
+            .edit-mode-btn,
+            .save-btn {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Orbital Canvas Background -->
+    <canvas id="orbital-canvas"></canvas>
+    
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <div class="logo-img"></div>
+                <span class="logo-text" data-en="United Creators" data-ar="United Creators">United Creators</span>
+            </a>
+            
+            <nav class="nav">
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#about" class="nav-link" data-en="Overview" data-ar="نظرة عامة">نظرة عامة</a></li>
+                    <li><a href="#programs" class="nav-link" data-en="Programs" data-ar="البرامج">البرامج</a></li>
+                    <li><a href="#competition" class="nav-link" data-en="Competition" data-ar="المسابقات">المسابقات</a></li>
+                    <li><a href="#implementation" class="nav-link" data-en="Implementation" data-ar="التطبيق">التطبيق</a></li>
+                    <li><a href="#why" class="nav-link" data-en="Why Us" data-ar="لماذا نحن">لماذا نحن</a></li>
+                    <li><a href="#team" class="nav-link" data-en="Team" data-ar="الفريق">الفريق</a></li>
+                    <li><a href="#gallery" class="nav-link" data-en="Gallery" data-ar="المعرض">المعرض</a></li>
+                    <li><a href="#contact" class="nav-link" data-en="Contact" data-ar="تواصل">تواصل</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="icon-btn" id="lang-toggle" title="Toggle Language">
+                    <span id="lang-icon">EN</span>
+                </button>
+                <button class="icon-btn" id="theme-toggle" title="Toggle Theme">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                </button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container hero-inner">
+            <div class="hero-content">
+                <div class="hero-badge badge pulse">
+                    <span data-en="Now Accepting New Institutional Partnerships" data-ar="نقبل شراكات مؤسسية جديدة">نقبل شراكات مؤسسية جديدة</span>
+                </div>
+                
+                <h1 class="hero-title" data-en="Building Tomorrow's Innovators with STEAM Robotics" data-ar="نبني مبتكري الغد عبر نوادي STEAM للروبوتات">
+                    نبني مبتكري الغد عبر نوادي STEAM للروبوتات
+                </h1>
+                
+                <span class="hero-title-en" data-en="نبني مبتكري الغد عبر نوادي STEAM للروبوتات" data-ar="Building Tomorrow's Innovators with STEAM Robotics">
+                    Building Tomorrow's Innovators with STEAM Robotics
+                </span>
+                
+                <p class="hero-subtitle typing-cursor" id="hero-subtitle" data-en="Structured training pathways, competition readiness, and measurable outcomes — designed for premium schools." data-ar="مسارات تدريب منظمة، جاهزية للمسابقات، ونتائج قابلة للقياس — مصممة للمدارس الراقية.">
+                    مسارات تدريب منظمة، جاهزية للمسابقات، ونتائج قابلة للقياس — مصممة للمدارس الراقية.
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                        <span data-en="Schedule Executive Meeting" data-ar="حجز اجتماع تنفيذي">حجز اجتماع تنفيذي</span>
+                    </a>
+                    <a href="#programs" class="btn btn-secondary">
+                        <span data-en="Explore Programs" data-ar="استعرض البرامج">استعرض البرامج</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"/>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="hero-metrics">
+                    <div class="metric-card glass-card gsap-reveal">
+                        <div class="metric-value" data-count="9000">0</div>
+                        <div class="metric-label" data-en="Beneficiaries" data-ar="مستفيد">+ مستفيد</div>
+                    </div>
+                    <div class="metric-card glass-card gsap-reveal">
+                        <div class="metric-value">K-12</div>
+                        <div class="metric-label" data-en="School Coverage" data-ar="تغطية مدرسية">تغطية مدرسية</div>
+                    </div>
+                    <div class="metric-card glass-card gsap-reveal">
+                        <div class="metric-value">VEX</div>
+                        <div class="metric-label" data-en="Competition Certified" data-ar="اعتماد المنافسات">اعتماد المنافسات</div>
+                    </div>
+                    <div class="metric-card glass-card gsap-reveal">
+                        <div class="metric-value">2030</div>
+                        <div class="metric-label" data-en="Vision Aligned" data-ar="رؤية متوافقة">رؤية متوافقة</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-image-wrapper gsap-reveal">
+                <div class="hero-image-placeholder editable-image" id="hero-image">
+                    <img src="https://picsum.photos/seed/robotics/800/600" alt="روبوت ذكي" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Overview Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-header gsap-reveal">
+                <h2 data-en="Executive Overview" data-ar="نظرة تنفيذية">نظرة تنفيذية</h2>
+                <p data-en="A comprehensive approach to STEAM education and robotics integration" data-ar="نهج شامل لتعليم STEAM ودمج الروبوتات">نهج شامل لتعليم STEAM ودمج الروبوتات</p>
+            </div>
+            
+            <div class="overview-grid">
+                <div class="glass-card gsap-reveal">
+                    <h3 data-en="What We Offer" data-ar="ما نقدمه">ما نقدمه</h3>
+                    <p data-en="United Creators delivers structured robotics and STEAM programs inside schools, designed to build real engineering capability from elementary through high school. Our curriculum integrates applied engineering, programming, and institutional development." data-ar="تقدم United Creators برامج روبوتات وSTEAM منظمة داخل المدارس، مصممة لبناء قدرة هندسية حقيقية من الابتدائي حتى الثانوي. منهجيتنا تدمج الهندسة التطبيقية والبرمجة والتطوير المؤسسي.">
+                        تقدم United Creators برامج روبوتات وSTEAM منظمة داخل المدارس، مصممة لبناء قدرة هندسية حقيقية من الابتدائي حتى الثانوي. منهجيتنا تدمج الهندسة التطبيقية والبرمجة والتطوير المؤسسي.
+                    </p>
+                </div>
+                <div class="glass-card gsap-reveal">
+                    <h3 data-en="How We Create Impact" data-ar="كيف نصنع الأثر">كيف نصنع الأثر</h3>
+                    <p data-en="Our progressive institutional partnership model aligns with Vision 2030, providing measurable outcomes through structured training pathways, competition readiness, and continuous improvement frameworks." data-ar="نموذج شراكة مؤسسية متدرج متوافق مع رؤية 2030، يقدم نتائج قابلة للقياس من خلال مسارات تدريب منظمة، وجاهزية للمسابقات، وأطر تحسين مستمر.">
+                        نموذج شراكة مؤسسية متدرج متوافق مع رؤية 2030، يقدم نتائج قابلة للقياس من خلال مسارات تدريب منظمة، وجاهزية للمسابقات، وأطر تحسين مستمر.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="philosophy-grid">
+                <div class="glass-card philosophy-card gsap-reveal">
+                    <div class="philosophy-icon">🎯</div>
+                    <h3 data-en="Vision" data-ar="الرؤية">الرؤية</h3>
+                    <p data-en="To become a trusted institutional partner in robotics and STEAM education, empowering the next generation of Saudi innovators." data-ar="أن نصبح شريكاً مؤسسياً موثوقاً في تعليم الروبوتات والSTEAM، لتمكين الجيل القادم من المبتكرين السعوديين.">
+                        أن نصبح شريكاً مؤسسياً موثوقاً في تعليم الروبوتات والSTEAM، لتمكين الجيل القادم من المبتكرين السعوديين.
+                    </p>
+                </div>
+                <div class="glass-card philosophy-card gsap-reveal">
+                    <div class="philosophy-icon">🚀</div>
+                    <h3 data-en="Mission" data-ar="المهمة">المهمة</h3>
+                    <p data-en="Delivering structured robotics programs that integrate applied engineering, programming, and institutional development for measurable outcomes." data-ar="تقديم برامج روبوتات منظمة تدمج الهندسة التطبيقية والبرمجة والتطوير المؤسسي لتحقيق نتائج قابلة للقياس.">
+                        تقديم برامج روبوتات منظمة تدمج الهندسة التطبيقية والبرمجة والتطوير المؤسسي لتحقيق نتائج قابلة للقياس.
+                    </p>
+                </div>
+                <div class="glass-card philosophy-card gsap-reveal">
+                    <div class="philosophy-icon">💡</div>
+                    <h3 data-en="Philosophy" data-ar="الفلسفة">الفلسفة</h3>
+                    <p data-en="Performance-oriented training with systematic documentation, competition simulation, and continuous skill assessment." data-ar="تدريب موجه نحو الأداء مع توثيق منظم ومحاكاة منافسات وتقييم مستمر للمهارات.">
+                        تدريب موجه نحو الأداء مع توثيق منظم ومحاكاة منافسات وتقييم مستمر للمهارات.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Programs Section -->
+    <section class="section" id="programs">
+        <div class="container">
+            <div class="section-header gsap-reveal">
+                <h2 data-en="Program Structure by Age Group" data-ar="هيكل البرامج حسب المرحلة">هيكل البرامج حسب المرحلة</h2>
+                <p data-en="Tailored pathways for every educational stage" data-ar="مسارات مخصصة لكل مرحلة تعليمية">مسارات مخصصة لكل مرحلة تعليمية</p>
+            </div>
+            
+            <div class="tabs programs-tabs gsap-reveal">
+                <button class="tab-btn active" data-tab="elementary" data-en="Elementary" data-ar="ابتدائي">ابتدائي</button>
+                <button class="tab-btn" data-tab="middle" data-en="Middle School" data-ar="متوسط">متوسط</button>
+                <button class="tab-btn" data-tab="high" data-en="High School" data-ar="ثانوي">ثانوي</button>
+                <button class="tab-btn" data-tab="addons" data-en="Institutional Add-ons" data-ar="إضافات مؤسسية">إضافات مؤسسية</button>
+            </div>
+            
+            <div class="tab-content active" id="elementary">
+                <div class="program-content gsap-reveal">
+                    <h3 data-en="Robotics Literacy & STEM Foundations" data-ar="محوية الروبوتات وأساسيات STEM">محوية الروبوتات وأساسيات STEM</h3>
+                    <ul class="program-list">
+                        <li data-en="Introduction to basic robotics concepts and components" data-ar="مقدمة في مفاهيم ومكونات الروبوتات الأساسية">مقدمة في مفاهيم ومكونات الروبوتات الأساسية</li>
+                        <li data-en="Hands-on building with simple machines and mechanisms" data-ar="بناء عملي للآلات والآليات البسيطة">بناء عملي للآلات والآليات البسيطة</li>
+                        <li data-en="Basic programming logic through visual block coding" data-ar="منطق البرمجة الأساسي عبر البرمجة المرئية">منطق البرمجة الأساسي عبر البرمجة المرئية</li>
+                        <li data-en="Problem-solving through structured challenges" data-ar="حل المشكلات من خلال تحديات منظمة">حل المشكلات من خلال تحديات منظمة</li>
+                        <li data-en="Team collaboration and communication skills" data-ar="مهارات العمل الجماعي والتواصل">مهارات العمل الجماعي والتواصل</li>
+                    </ul>
+                    <div class="program-focus">
+                        <strong data-en="Focus: " data-ar="التركيز: ">التركيز: </strong>
+                        <span data-en="Building curiosity and foundational understanding of robotics and engineering principles through play-based learning." data-ar="بناء الفضول والفهم الأساسي لمبادئ الروبوتات والهندسة من خلال التعلم القائم على اللعب.">
+                            بناء الفضول والفهم الأساسي لمبادئ الروبوتات والهندسة من خلال التعلم القائم على اللعب.
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="middle">
+                <div class="program-content gsap-reveal">
+                    <h3 data-en="Structured Engineering Development" data-ar="التطوير الهندسي المنظم">التطوير الهندسي المنظم</h3>
+                    <ul class="program-list">
+                        <li data-en="Advanced mechanical design and construction" data-ar="التصميم والبناء الميكانيكي المتقدم">التصميم والبناء الميكانيكي المتقدم</li>
+                        <li data-en="Sensor integration and data collection" data-ar="دمج المستشعرات وجمع البيانات">دمج المستشعرات وجمع البيانات</li>
+                        <li data-en="Text-based programming introduction" data-ar="مقدمة في البرمجة النصية">مقدمة في البرمجة النصية</li>
+                        <li data-en="Engineering design process application" data-ar="تطبيق عملية التصميم الهندسي">تطبيق عملية التصميم الهندسي</li>
+                        <li data-en="Preparation for entry-level competitions" data-ar="التحضير للمنافسات المبتدئة">التحضير للمنافسات المبتدئة</li>
+                    </ul>
+                    <div class="program-focus">
+                        <strong data-en="Focus: " data-ar="التركيز: ">التركيز: </strong>
+                        <span data-en="Developing systematic engineering thinking and technical skills through structured projects and challenges." data-ar="تطوير التفكير الهندسي المنظم والمهارات التقنية من خلال المشاريع والتحديات المنظمة.">
+                            تطوير التفكير الهندسي المنظم والمهارات التقنية من خلال المشاريع والتحديات المنظمة.
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="high">
+                <div class="program-content gsap-reveal">
+                    <h3 data-en="Advanced Robotics & Competitive Preparation" data-ar="الروبوتات المتقدمة والتحضير التنافسي">الروبوتات المتقدمة والتحضير التنافسي</h3>
+                    <ul class="program-list">
+                        <li data-en="Complex autonomous and driver-controlled systems" data-ar="أنظمة مستقلة وتحكم معقدة">أنظمة مستقلة وتحكم معقدة</li>
+                        <li data-en="Advanced programming (C++, Python)" data-ar="برمجة متقدمة (C++، Python)">برمجة متقدمة (C++، Python)</li>
+                        <li data-en="Competition strategy and game analysis" data-ar="استراتيجية المنافسة وتحليل اللعبة">استراتيجية المنافسة وتحليل اللعبة</li>
+                        <li data-en="Project management and team leadership" data-ar="إدارة المشاريع والقيادة الفريقية">إدارة المشاريع والقيادة الفريقية</li>
+                        <li data-en="Portfolio development and documentation" data-ar="تطوير المحفظة والتوثيق">تطوير المحفظة والتوثيق</li>
+                    </ul>
+                    <div class="program-focus">
+                        <strong data-en="Focus: " data-ar="التركيز: ">التركيز: </strong>
+                        <span data-en="Preparing students for national and international robotics competitions with professional-level skills and mindset." data-ar="تحضير الطلاب للمنافسات الوطنية والدولية للروبوتات بمهارات وعقلية على المستوى الاحترافي.">
+                            تحضير الطلاب للمنافسات الوطنية والدولية للروبوتات بمهارات وعقلية على المستوى الاحترافي.
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="addons">
+                <div class="program-content gsap-reveal">
+                    <h3 data-en="Institutional Add-ons" data-ar="إضافات مؤسسية">إضافات مؤسسية</h3>
+                    <ul class="program-list">
+                        <li data-en="Teacher training and certification programs" data-ar="برامج تدريب واعتماد المعلمين">برامج تدريب واعتماد المعلمين</li>
+                        <li data-en="Curriculum customization and development" data-ar="تخصيص وتطوير المنهجية">تخصيص وتطوير المنهجية</li>
+                        <li data-en="Lab setup and equipment consultation" data-ar="إعداد المختبرات واستشارات المعدات">إعداد المختبرات واستشارات المعدات</li>
+                        <li data-en="Competition registration and support" data-ar="التسجيل والدعم في المنافسات">التسجيل والدعم في المنافسات</li>
+                        <li data-en="Progress tracking and reporting systems" data-ar="أنظمة تتبع التقدم والتقارير">أنظمة تتبع التقدم والتقارير</li>
+                    </ul>
+                    <div class="program-focus">
+                        <strong data-en="Focus: " data-ar="التركيز: ">التركيز: </strong>
+                        <span data-en="Comprehensive support for institutions to build sustainable, world-class robotics programs." data-ar="دعم شامل للمؤسسات لبناء برامج روبوتات مستدامة على مستوى عالمي.">
+                            دعم شامل للمؤسسات لبناء برامج روبوتات مستدامة على مستوى عالمي.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Competition Section -->
+    <section class="section" id="competition">
+        <div class="container">
+            <div class="section-header gsap-reveal">
+                <h2 data-en="Competition & Readiness" data-ar="المسابقات والجاهزية">المسابقات والجاهزية</h2>
+                <p data-en="Preparing students for excellence in competitive robotics" data-ar="تحضير الطلاب للتميز في روبوتات المنافسات">تحضير الطلاب للتميز في روبوتات المنافسات</p>
+            </div>
+            
+            <div class="competition-grid">
+                <div class="glass-card gsap-reveal">
+                    <h3 data-en="Competition-Focused Model" data-ar="نموذج موجه للمنافسات">نموذج موجه للمنافسات</h3>
+                    <p data-en="Our training methodology is built around preparing students for real-world robotics competitions. From VEX Robotics to national Saudi competitions, we provide the technical skills, strategic thinking, and mental preparation needed to excel." data-ar="منهجيتنا التدريبية مبنية على تحضير الطلاب لمنافسات الروبوتات الواقعية. من VEX Robotics إلى المنافسات السعودية الوطنية، نقدم المهارات التقنية والتفكير الاستراتيجي والتحضير الذهني اللازم للتميز.">
+                        منهجيتنا التدريبية مبنية على تحضير الطلاب لمنافسات الروبوتات الواقعية. من VEX Robotics إلى المنافسات السعودية الوطنية، نقدم المهارات التقنية والتفكير الاستراتيجي والتحضير الذهني اللازم للتميز.
+                    </p>
+                </div>
+                <div class="glass-card gsap-reveal">
+                    <h3 data-en="Training Pillars" data-ar="ركائز التدريب">ركائز التدريب</h3>
+                    <ul class="program-list">
+                        <li data-en="Technical skill development (building, programming)" data-ar="تطوير المهارات التقنية (البناء، البرمجة)">تطوير المهارات التقنية (البناء، البرمجة)</li>
+                        <li data-en="Strategic game analysis and planning" data-ar="تحليل وتخطيط استراتيجية اللعبة">تحليل وتخطيط استراتيجية اللعبة</li>
+                        <li data-en="Team dynamics and role specialization" data-ar="ديناميكيات الفريق وتخصص الأدوار">ديناميكيات الفريق وتخصص الأدوار</li>
+                        <li data-en="Time management under pressure" data-ar="إدارة الوقت تحت الضغط">إدارة الوقت تحت الضغط</li>
+                        <li data-en="Documentation and engineering notebooks" data-ar="التوثيق ودفاتر الهندسة">التوثيق ودفاتر الهندسة</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="competition-images">
+                <div class="competition-image editable-image gsap-reveal">
+                    <img src="https://picsum.photos/seed/steam/800/600" alt="طلاب STEAM" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+                <div class="competition-image editable-image gsap-reveal">
+                    <img src="https://picsum.photos/seed/competition/800/600" alt="ورشة روبوتات" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Implementation Section -->
+    <section class="section" id="implementation">
+        <div class="container">
+            <div class="section-header gsap-reveal">
+                <h2 data-en="Implementation Model" data-ar="نموذج التطبيق">نموذج التطبيق</h2>
+                <p data-en="A phased approach to building sustainable robotics programs" data-ar="نهج مرحلي لبناء برامج روبوتات مستدامة">نهج مرحلي لبناء برامج روبوتات مستدامة</p>
+            </div>
+            
+            <div class="implementation-steps">
+                <div class="step-card glass-card gsap-reveal">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <span class="step-duration" data-en="3 Months" data-ar="3 أشهر">3 أشهر</span>
+                        <h3 data-en="Pilot Program" data-ar="البرنامج التجريبي">البرنامج التجريبي</h3>
+                        <p data-en="Initial assessment, curriculum customization, and small-scale implementation with select student groups. Establish baseline metrics and identify key success factors." data-ar="التقييم الأولي، تخصيص المنهجية، والتنفيذ على نطاق صغير مع مجموعات طلابية مختارة. تحديد المقاييس الأساسية وتحديد عوامل النجاح الرئيسية.">
+                            التقييم الأولي، تخصيص المنهجية، والتنفيذ على نطاق صغير مع مجموعات طلابية مختارة. تحديد المقاييس الأساسية وتحديد عوامل النجاح الرئيسية.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="step-card glass-card gsap-reveal">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <span class="step-duration" data-en="6-12 Months" data-ar="6-12 شهر">6-12 شهر</span>
+                        <h3 data-en="Structured Development" data-ar="التطوير المنظم">التطوير المنظم</h3>
+                        <p data-en="Expand to full grade levels, implement comprehensive training schedules, introduce competition preparation, and establish teacher training programs." data-ar="التوسع إلى جميع المراحل الدراسية، تنفيذ جداول تدريب شاملة، إدخال التحضير للمنافسات، وإنشاء برامج تدريب المعلمين.">
+                            التوسع إلى جميع المراحل الدراسية، تنفيذ جداول تدريب شاملة، إدخال التحضير للمنافسات، وإنشاء برامج تدريب المعلمين.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="step-card glass-card gsap-reveal">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <span class="step-duration" data-en="Ongoing" data-ar="مستمر">مستمر</span>
+                        <h3 data-en="Institutional Robotics Track" data-ar="المسار المؤسسي للروبوتات">المسار المؤسسي للروبوتات</h3>
+                        <p data-en="Full integration into school culture, advanced competition teams, alumni network development, and continuous program refinement based on outcomes data." data-ar="الدمج الكامل في ثقافة المدرسة، فرق المنافسة المتقدمة، تطوير شبكة الخريجين، والتحسين المستمر للبرنامج بناءً على بيانات النتائج.">
+                            الدمج الكامل في ثقافة المدرسة، فرق المنافسة المتقدمة، تطوير شبكة الخريجين، والتحسين المستمر للبرنامج بناءً على بيانات النتائج.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Why Us Section -->
+    <section class="section" id="why">
+        <div class="container">
+            <div class="section-header gsap-reveal">
+                <h2 data-en="Why Partner with United Creators" data-ar="لماذا United Creators">لماذا United Creators</h2>
+                <p data-en="Six reasons to choose us as your robotics education partner" data-ar="ستة أسباب لاختيارنا شريكاً في تعليم الروبوتات">ستة أسباب لاختيارنا شريكاً في تعليم الروبوتات</p>
+            </div>
+            
+            <div class="why-grid">
+                <div class="glass-card why-card gsap-reveal">
+                    <span class="why-number">01</span>
+                    <h3 data-en="Engineering-Led Program Design" data-ar="تصميم برامج بقيادة هندسية">تصميم برامج بقيادة هندسية</h3>
+                    <p data-en="Programs designed by engineers with real-world experience, ensuring practical, applicable skills." data-ar="برامج صممها مهندسون بخبرة واقعية، مما يضمن مهارات عملية قابلة للتطبيق."></p>
+                </div>
+                
+                <div class="glass-card why-card gsap-reveal">
+                    <span class="why-number">02</span>
+                    <h3 data-en="Certified Competition Expertise" data-ar="خبرة معتمدة في المنافسات">خبرة معتمدة في المنافسات</h3>
+                    <p data-en="Official VEX Robotics judges and certified coaches with proven track records in competitions." data-ar="حكام VEX Robotics رسميون ومدربون معتمدون بسجلات حافلة في المنافسات."></p>
+                </div>
+                
+                <div class="glass-card why-card gsap-reveal">
+                    <span class="why-number">03</span>
+                    <h3 data-en="Scalable Institutional Integration" data-ar="دمج مؤسسي قابل للتوسع">دمج مؤسسي قابل للتوسع</h3>
+                    <p data-en="Flexible programs that grow with your institution, from pilot to full-scale implementation." data-ar="برامج مرنة تنمو مع مؤسستك، من التجريبي إلى التنفيذ على نطاق واسع."></p>
+                </div>
+                
+                <div class="glass-card why-card gsap-reveal">
+                    <span class="why-number">04</span>
+                    <h3 data-en="Robotics Literacy Across All Levels" data-ar="محوية الروبوتات على جميع المستويات">محوية الروبوتات على جميع المستويات</h3>
+                    <p data-en="Comprehensive curriculum covering K-12, ensuring continuous skill development." data-ar="منهجية شاملة تغطي K-12، مما يضمن التطوير المستمر للمهارات."></p>
+                </div>
+                
+                <div class="glass-card why-card gsap-reveal">
+                    <span class="why-number">05</span>
+                    <h3 data-en="Curriculum Development Capability" data-ar="قدرة على تطوير المنهجية">قدرة على تطوير المنهجية</h3>
+                    <p data-en="Custom curriculum design tailored to your institution's goals and student needs." data-ar="تصميم منهجية مخصصة مُحكّمة مع أهداف مؤسستك واحتياجات طلابك."></p>
+                </div>
+                
+                <div class="glass-card why-card gsap-reveal">
+                    <span class="why-number">06</span>
+                    <h3 data-en="Performance-Oriented Training" data-ar="تدريب موجه نحو الأداء">تدريب موجه نحو الأداء</h3>
+                    <p data-en="Focus on measurable outcomes, competition success, and skill mastery." data-ar="التركيز على النتائج القابلة للقياس، النجاح في المنافسات، وإتقان المهارات."></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Team Section -->
+    <section class="section" id="team">
+        <div class="container">
+            <div class="section-header gsap-reveal">
+                <h2 data-en="Leadership & Technical Team" data-ar="الفريق القيادي والتقني">الفريق القيادي والتقني</h2>
+                <p data-en="Meet the experts behind United Creators" data-ar="تعرف على الخبراء وراء United Creators">تعرف على الخبراء وراء United Creators</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="glass-card team-card gsap-reveal">
+                    <div class="team-avatar editable-image">
+                        <img src="https://ui-avatars.com/api/?name=Ahmad+Ayache&size=200&background=38bdf8&color=fff&bold=true" alt="Ahmad Ayache" class="team-avatar-img">
+                    </div>
+                    <h3 data-en="Ahmad Ayache" data-ar="أحمد عياش">أحمد عياش</h3>
+                    <p class="team-role" data-en="Certified Robotics Coach & Official Competition Judge" data-ar="مدرب روبوتات معتمد وحكم رسمي في المنافسات">مدرب روبوتات معتمد وحكم رسمي في المنافسات</p>
+                </div>
+                
+                <div class="glass-card team-card gsap-reveal">
+                    <div class="team-avatar editable-image">
+                        <img src="https://ui-avatars.com/api/?name=Feras+Alnajjar&size=200&background=10b981&color=fff&bold=true" alt="Feras Alnajjar" class="team-avatar-img">
+                    </div>
+                    <h3 data-en="Feras Alnajjar" data-ar="فراس النجار">فراس النجار</h3>
+                    <p class="team-role" data-en="Mechatronics Engineer, MSc Engineering Management" data-ar="مهندس ميكاترونيكس، ماجستير إدارة هندسية">مهندس ميكاترونيكس، ماجستير إدارة هندسية</p>
+                </div>
+                
+                <div class="glass-card team-card gsap-reveal">
+                    <div class="team-avatar editable-image">
+                        <img src="https://ui-avatars.com/api/?name=Zain+Almufty&size=200&background=a78bfa&color=fff&bold=true" alt="Zain Almufty" class="team-avatar-img">
+                    </div>
+                    <h3 data-en="Zain Almufty" data-ar="زين المفتي">زين المفتي</h3>
+                    <p class="team-role" data-en="Robotics Trainer, Software Development" data-ar="مدرب روبوتات، تطوير برمجيات">مدرب روبوتات، تطوير برمجيات</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery Section -->
+    <section class="section" id="gallery">
+        <div class="container">
+            <div class="section-header gsap-reveal">
+                <h2 data-en="Gallery" data-ar="معرض الصور">معرض الصور</h2>
+                <p data-en="Moments from our journey in robotics education" data-ar="لحظات من رحلتنا في تعليم الروبوتات">لحظات من رحلتنا في تعليم الروبوتات</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item editable-image gsap-reveal" onclick="openGalleryModal(this)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                </div>
+                <div class="gallery-item editable-image gsap-reveal" onclick="openGalleryModal(this)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                </div>
+                <div class="gallery-item editable-image gsap-reveal" onclick="openGalleryModal(this)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery Modal -->
+    <div class="gallery-modal" id="gallery-modal" onclick="closeGalleryModal()">
+        <button class="gallery-modal-close">&times;</button>
+        <div class="gallery-modal-content">
+            <div class="gallery-item" style="width: 80vw; height: 80vh; background: var(--dark-navy-light);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 100px; height: 100px;">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <polyline points="21 15 16 10 5 21"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-header gsap-reveal">
+                <h2 data-en="Contact Us" data-ar="تواصل معنا">تواصل معنا</h2>
+                <p data-en="Ready to bring robotics education to your school? Let's talk." data-ar="مستعد لإحضار تعليم الروبوتات إلى مدرستك؟ لنتحدث.">مستعد لإحضار تعليم الروبوتات إلى مدرستك؟ لنتحدث.</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info gsap-reveal">
+                    <h3 data-en="Get in Touch" data-ar="تواصل مباشرة">تواصل مباشرة</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4 data-en="Location" data-ar="الموقع">الموقع</h4>
+                            <p data-en="Jeddah, Kingdom of Saudi Arabia" data-ar="جدة، المملكة العربية السعودية">جدة، المملكة العربية السعودية</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <h4 data-en="Email" data-ar="البريد الإلكتروني">البريد الإلكتروني</h4>
+                            <p>info@unitedcreators.com.sa</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h4 data-en="Phone" data-ar="الهاتف">الهاتف</h4>
+                            <p dir="ltr" style="text-align: right;">+966 54 677 5472</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-actions">
+                        <a href="mailto:info@unitedcreators.com.sa" class="btn btn-primary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <span data-en="Email Us" data-ar="راسلنا">راسلنا</span>
+                        </a>
+                        <a href="tel:+966546775472" class="btn btn-secondary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                            <span data-en="Call Now" data-ar="اتصل الآن">اتصل الآن</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-form-wrapper glass-card gsap-reveal">
+                    <form id="contact-form" onsubmit="handleContactSubmit(event)">
+                        <div class="form-group">
+                            <label class="form-label" data-en="Name" data-ar="الاسم">الاسم</label>
+                            <input type="text" class="form-input" name="name" required data-placeholder-en="Your name" data-placeholder-ar="اسمك" placeholder="اسمك">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" data-en="Institution" data-ar="المؤسسة">المؤسسة</label>
+                            <input type="text" class="form-input" name="institution" data-placeholder-en="School or organization" data-placeholder-ar="المدرسة أو المؤسسة" placeholder="المدرسة أو المؤسسة">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" data-en="Email" data-ar="البريد الإلكتروني">البريد الإلكتروني</label>
+                            <input type="email" class="form-input" name="email" required data-placeholder-en="your@email.com" data-placeholder-ar="بريدك@email.com" placeholder="بريدك@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" data-en="Phone" data-ar="الهاتف">الهاتف</label>
+                            <input type="tel" class="form-input" name="phone" data-placeholder-en="+966 5X XXX XXXX" data-placeholder-ar="+966 5X XXX XXXX" placeholder="+966 5X XXX XXXX">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" data-en="Message" data-ar="الرسالة">الرسالة</label>
+                            <textarea class="form-input" name="message" rows="4" data-placeholder-en="Tell us about your needs..." data-placeholder-ar="أخبرنا عن احتياجاتك..." placeholder="أخبرنا عن احتياجاتك..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <span data-en="Send Message" data-ar="إرسال الرسالة">إرسال الرسالة</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"/>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-logo">United Creators</div>
+            <div class="footer-contact">
+                <a href="mailto:info@unitedcreators.com.sa">info@unitedcreators.com.sa</a>
+                <a href="tel:+966546775472" dir="ltr">+966 54 677 5472</a>
+            </div>
+            <button class="back-to-top" onclick="scrollToTop()" title="Back to Top">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="18 15 12 9 6 15"/>
+                </svg>
+            </button>
+            <p class="footer-copyright" data-en="© 2026 United Creators. All rights reserved." data-ar="© 2026 United Creators. جميع الحقوق محفوظة.">
+                © 2026 United Creators. جميع الحقوق محفوظة.
+            </p>
+        </div>
+    </footer>
+    
+    <!-- Edit Mode Button -->
+    <button class="edit-mode-btn" id="edit-mode-btn" onclick="toggleEditMode()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+        </svg>
+        <span data-en="Edit Mode" data-ar="وضع التحرير">وضع التحرير</span>
+    </button>
+    
+    <!-- Save Button (hidden by default) -->
+    <button class="save-btn" id="save-btn" onclick="saveAndDownload()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+            <polyline points="17 21 17 13 7 13 7 21"/>
+            <polyline points="7 3 7 8 15 8"/>
+        </svg>
+        <span data-en="Save & Download" data-ar="حفظ وتحميل">حفظ وتحميل</span>
+    </button>
+    
+    <!-- Hidden file input for image upload -->
+    <input type="file" id="image-upload" accept="image/*" onchange="handleImageUpload(event)">
+
+    <script>
+
+        /* ============================================
+           ORBITAL CANVAS ANIMATION
+        ============================================ */
+        const canvas = document.getElementById('orbital-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height, centerX, centerY;
+        let particles = [];
+        let scrollProgress = 0;
+        let glowFlash = 0;
+        
+        const colors = ['#38bdf8', '#a78bfa', '#10b981', '#f59e0b'];
+        const numParticles = 90;
+        const numRings = 4;
+        
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            centerX = width / 2;
+            centerY = height / 2;
+        }
+        
+        class Particle {
+            constructor(index) {
+                this.index = index;
+                this.ringIndex = index % numRings;
+                this.angle = (index / numParticles) * Math.PI * 2 + (this.ringIndex * Math.PI / 4);
+                this.baseRadius = 150 + this.ringIndex * 80;
+                this.radius = this.baseRadius;
+                this.size = 2 + Math.random() * 3;
+                this.color = colors[this.ringIndex % colors.length];
+                this.speed = 0.002 + (numRings - this.ringIndex) * 0.001;
+                this.opacity = 0.4 + Math.random() * 0.4;
+            }
+            
+            update() {
+                // Rotate
+                this.angle += this.speed;
+                
+                // Contract based on scroll progress
+                const contractionFactor = 1 - (scrollProgress * 0.8);
+                this.radius = this.baseRadius * Math.max(0.1, contractionFactor);
+                
+                // Calculate position
+                this.x = centerX + Math.cos(this.angle) * this.radius;
+                this.y = centerY + Math.sin(this.angle) * this.radius;
+            }
+            
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.opacity;
+                ctx.fill();
+                
+                // Glow effect
+                if (glowFlash > 0) {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.globalAlpha = this.opacity * glowFlash;
+                    ctx.fill();
+                }
+                
+                ctx.globalAlpha = 1;
+            }
+        }
+        
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < numParticles; i++) {
+                particles.push(new Particle(i));
+            }
+        }
+        
+        function drawConnections() {
+            // Draw faint connections between nearby particles in same ring
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.1)';
+            ctx.lineWidth = 0.5;
+            
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    if (particles[i].ringIndex === particles[j].ringIndex) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (dist < 50) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.globalAlpha = (1 - dist / 50) * 0.2;
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+            ctx.globalAlpha = 1;
+        }
+        
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            
+            // Draw connections first
+            drawConnections();
+            
+            // Update and draw particles
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            // Decay glow flash
+            if (glowFlash > 0) {
+                glowFlash -= 0.02;
+                if (glowFlash < 0) glowFlash = 0;
+            }
+            
+            requestAnimationFrame(animate);
+        }
+        
+        // Initialize canvas
+        resizeCanvas();
+        initParticles();
+        animate();
+        
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            initParticles();
+        });
+        
+        /* ============================================
+           SCROLL HANDLING
+        ============================================ */
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            scrollProgress = Math.min(scrollTop / docHeight, 1);
+            
+            // Trigger glow flash when scroll reaches 90%
+            if (scrollProgress >= 0.9 && glowFlash === 0) {
+                glowFlash = 1;
+            }
+            
+            // Header scroll effect
+            const header = document.getElementById('header');
+            if (scrollTop > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        /* ============================================
+           GSAP ANIMATIONS
+        ============================================ */
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Hero title animation
+        gsap.from('.hero-title', {
+            opacity: 0,
+            y: 50,
+            skewY: 5,
+            duration: 1,
+            ease: 'expo.out',
+            delay: 0.3
+        });
+        
+        gsap.from('.hero-title-en', {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            ease: 'expo.out',
+            delay: 0.5
+        });
+        
+        // Reveal animations for sections
+        gsap.utils.toArray('.gsap-reveal').forEach((element, i) => {
+            gsap.fromTo(element, 
+                { opacity: 0, y: 30 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    delay: (i % 3) * 0.13
+                }
+            );
+        });
+        
+        // Counter animation for metrics
+        const metricValues = document.querySelectorAll('[data-count]');
+        metricValues.forEach(metric => {
+            const target = parseInt(metric.dataset.count);
+            
+            ScrollTrigger.create({
+                trigger: metric,
+                start: 'top 85%',
+                onEnter: () => {
+                    gsap.to(metric, {
+                        innerHTML: target,
+                        duration: 2,
+                        ease: 'power2.out',
+                        snap: { innerHTML: 1 },
+                        onUpdate: function() {
+                            metric.innerHTML = Math.round(this.targets()[0].innerHTML).toLocaleString();
+                        }
+                    });
+                },
+                once: true
+            });
+        });
+        
+        /* ============================================
+           TYPING EFFECT
+        ============================================ */
+        function typeWriter(element, text, speed = 50) {
+            let i = 0;
+            element.textContent = '';
+            element.classList.add('typing-cursor');
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    element.classList.remove('typing-cursor');
+                }
+            }
+            
+            type();
+        }
+        
+        // Start typing effect on page load
+        window.addEventListener('load', () => {
+            const subtitle = document.getElementById('hero-subtitle');
+            const originalText = subtitle.textContent;
+            typeWriter(subtitle, originalText, 40);
+        });
+        
+        /* ============================================
+           TABS SYSTEM
+        ============================================ */
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.dataset.tab;
+                
+                // Remove active from all
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active to clicked
+                btn.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        /* ============================================
+           LANGUAGE SWITCHING
+        ============================================ */
+        let currentLang = localStorage.getItem('language') || 'ar';
+        
+        function updateLanguage(lang) {
+            const html = document.documentElement;
+            const langIcon = document.getElementById('lang-icon');
+            
+            html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            html.setAttribute('lang', lang);
+            langIcon.textContent = lang === 'ar' ? 'EN' : 'AR';
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-en][data-ar]').forEach(el => {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = el.getAttribute(`data-placeholder-${lang}`) || el.getAttribute(`data-${lang}`);
+                } else {
+                    el.textContent = el.getAttribute(`data-${lang}`);
+                }
+            });
+            
+            // Update form placeholders
+            document.querySelectorAll('.form-input').forEach(input => {
+                const placeholder = input.getAttribute(`data-placeholder-${lang}`);
+                if (placeholder) input.placeholder = placeholder;
+            });
+            
+            localStorage.setItem('language', lang);
+        }
+        
+        document.getElementById('lang-toggle').addEventListener('click', () => {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            updateLanguage(currentLang);
+        });
+        
+        // Initialize language
+        updateLanguage(currentLang);
+        
+        /* ============================================
+           THEME SWITCHING
+        ============================================ */
+        let currentTheme = localStorage.getItem('theme') || 'dark';
+        
+        function updateTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        }
+        
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            updateTheme(currentTheme);
+        });
+        
+        // Initialize theme
+        updateTheme(currentTheme);
+        
+        /* ============================================
+           MOBILE MENU
+        ============================================ */
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.getElementById('nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        /* ============================================
+           GALLERY MODAL
+        ============================================ */
+        function openGalleryModal(item) {
+            const modal = document.getElementById('gallery-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeGalleryModal() {
+            const modal = document.getElementById('gallery-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Close on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeGalleryModal();
+        });
+        
+        /* ============================================
+           CONTACT FORM
+        ============================================ */
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const formData = new FormData(form);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+            
+            // Create mailto link
+            const subject = encodeURIComponent(`Contact from ${name}`);
+            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+            
+            window.location.href = `mailto:info@unitedcreators.com.sa?subject=${subject}&body=${body}`;
+        }
+        
+        /* ============================================
+           SCROLL TO TOP
+        ============================================ */
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        /* ============================================
+           EDIT MODE
+        ============================================ */
+        let isEditMode = false;
+        let currentImageElement = null;
+        
+        function toggleEditMode() {
+            isEditMode = !isEditMode;
+            document.body.classList.toggle('edit-mode', isEditMode);
+            
+            const btn = document.getElementById('edit-mode-btn');
+            btn.classList.toggle('active', isEditMode);
+            
+            // Toggle contenteditable on text elements
+            document.querySelectorAll('h1, h2, h3, h4, p, span, .nav-link').forEach(el => {
+                if (!el.closest('.edit-mode-btn') && !el.closest('.save-btn')) {
+                    el.contentEditable = isEditMode;
+                }
+            });
+            
+            // Make images clickable for upload
+            document.querySelectorAll('.editable-image').forEach(img => {
+                img.onclick = isEditMode ? () => selectImageForUpload(img) : null;
+            });
+        }
+        
+        function selectImageForUpload(element) {
+            currentImageElement = element;
+            document.getElementById('image-upload').click();
+        }
+        
+        function handleImageUpload(e) {
+            const file = e.target.files[0];
+            if (file && currentImageElement) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    // Create image element
+                    const img = document.createElement('img');
+                    img.src = event.target.result;
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.objectFit = 'cover';
+                    img.style.borderRadius = 'inherit';
+                    
+                    // Clear and append
+                    currentImageElement.innerHTML = '';
+                    currentImageElement.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        // Drag and drop for images
+        document.querySelectorAll('.editable-image').forEach(el => {
+            el.addEventListener('dragover', (e) => {
+                if (!isEditMode) return;
+                e.preventDefault();
+                el.style.border = '2px dashed var(--electric-blue)';
+            });
+            
+            el.addEventListener('dragleave', () => {
+                el.style.border = '';
+            });
+            
+            el.addEventListener('drop', (e) => {
+                if (!isEditMode) return;
+                e.preventDefault();
+                el.style.border = '';
+                
+                const file = e.dataTransfer.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        const img = document.createElement('img');
+                        img.src = event.target.result;
+                        img.style.width = '100%';
+                        img.style.height = '100%';
+                        img.style.objectFit = 'cover';
+                        img.style.borderRadius = 'inherit';
+                        
+                        el.innerHTML = '';
+                        el.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+        
+        /* ============================================
+           SAVE & DOWNLOAD
+        ============================================ */
+        function saveAndDownload() {
+            // Get current HTML content
+            const htmlContent = document.documentElement.outerHTML;
+            
+            // Create blob
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            
+            // Create download link
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'united-creators-edited.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            
+            URL.revokeObjectURL(url);
+            
+            // Show confirmation
+            alert(currentLang === 'ar' ? 'تم الحفظ بنجاح!' : 'Saved successfully!');
+        }
+        
+        /* ============================================
+           PARALLAX EFFECT FOR HERO IMAGE
+        ============================================ */
+        window.addEventListener('scroll', () => {
+            const heroImage = document.querySelector('.hero-image-wrapper');
+            if (heroImage) {
+                const scrollY = window.scrollY;
+                heroImage.style.transform = `translateY(${scrollY * 0.1}px)`;
+            }
+        });
+        
+        /* ============================================
+           SMOOTH SCROLL FOR ANCHOR LINKS
+        ============================================ */
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
